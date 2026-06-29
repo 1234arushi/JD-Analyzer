@@ -4,7 +4,7 @@ const status=document.getElementById("status");
 analyzeBtn.addEventListener("click",()=>{
     status.textContent="Analyzing...";
     chrome.tabs.query(
-        {active:true,currentWinow:true},
+        {active:true,currentWindow:true},
         //after receiving a tab, we are asking chrome to go to content.js for that
         (tabs)=>{
             chrome.tabs.sendMessage(
