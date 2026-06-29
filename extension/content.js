@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
         const roleElement = paragraphs[1];
 
         const locationElement = paragraphs[2];
+        const city = locationElement.textContent.split(",")[0];
 
         // Job Description
         const jdElement = document.querySelector(
@@ -31,7 +32,7 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
                     ? roleElement.textContent.trim()
                     : "",
             location:locationElement
-                    ?locationElement.textContent.trim()
+                    ?city.textContent.trim()
                     :"",
             jobdescription:jdElement
                     ?jdElement.textContent.trim()
