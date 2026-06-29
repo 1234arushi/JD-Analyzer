@@ -1,15 +1,25 @@
 package services
 
-const CleanJDPrompt = `You are given a scraped job description from a job portal.
+const CleanJDPrompt = `You are given a scraped job description.
 
-Remove company marketing, culture descriptions, legal notices, diversity statements, hiring process, navigation text, and any unrelated content.
+Extract ONLY the following information.
 
-Preserve only information relevant to the actual job, including responsibilities, requirements, qualifications, skills, experience, education and role details.
+Return STRICT JSON.
 
-Do not summarize.
+{
+  "required_skills": [],
+  "nice_to_have_skills": [],
+  "education": [],
+  "experience": ""
+}
 
-Return only the cleaned job description.
+Rules:
 
-Job Description:
+- Ignore company culture, benefits, diversity statements, hiring process and marketing.
+- Include only explicitly mentioned skills.
+- Put mandatory skills in required_skills.
+- Put preferred skills in nice_to_have_skills.
+- Do not return explanations.
+- Return valid JSON only.
 
 `
