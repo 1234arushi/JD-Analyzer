@@ -1,8 +1,8 @@
 //request -> message, sender->popup/background , sendResponse-> function to send data back
-chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
-    if(request.action==="extractJD"){
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "extractJD") {
         console.log("Extracting Job Description..")
-        const companyElement=document.querySelector(
+        const companyElement = document.querySelector(
             //find first <a> tag that lives inside any element & whose aria-label starts with "Company"
             '[aria-label^="Company"] a'// ^= -> starts-with operator
             //aria-label : attribute(for describing element) must be enclosed in sq bracket
@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
             '[data-testid="lazy-column"]'
         );
         const paragraphs = lazyColumn.querySelectorAll("p");
-       
+
         const roleElement = paragraphs[1];
 
         const locationElement = paragraphs[2];
@@ -25,19 +25,19 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
         //sending data back to popup.js
 
         sendResponse({
-            company:companyElement//ternary operation
-                   ?companyElement.textContent.trim()
-                   :"",
-            role:roleElement
-                    ? roleElement.textContent.trim()
-                    : "",
-            location:locationElement
-                    ?city.trim()
-                    :"",
-            jobdescription:jdElement
-                    ?jdElement.textContent.trim()
-                    :"",
-                
+            company: companyElement//ternary operation
+                ? companyElement.textContent.trim()
+                : "",
+            role: roleElement
+                ? roleElement.textContent.trim()
+                : "",
+            location: locationElement
+                ? city.trim()
+                : "",
+            jobdescription: jdElement
+                ? jdElement.textContent.trim()
+                : "",
+
         });
     }
 
