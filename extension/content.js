@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener((request,sender,sendResponse)=>{
             location:locationElement
                     ?locationElement.textContent.trim()
                     :"",
-            jobDescription:jdElement
+            jobdescription:jdElement
                     ?jdElement.textContent.trim()
                     :"",
                 

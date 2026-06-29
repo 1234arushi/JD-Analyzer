@@ -10,9 +10,16 @@ analyzeBtn.addEventListener("click",()=>{
             chrome.tabs.sendMessage(
                 tabs[0].id,
                 {action:"extractJD"},
-                (response)=>{
+                async (response)=>{
                     status.textContent="Extraction Complete!";
-                    console.log(response);
+                    const res=await fetch("http://localhost:8080/jdscope/v1/analyze",{
+                        method:"POST",
+                        headers:{
+                            "Content-type":"application/json",
+                        },
+                        body:JSON.stringify(response),
+                    });
+                    const data=await res.json();
                 }
             )
         }
